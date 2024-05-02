@@ -20,8 +20,8 @@
 _Only 3 files matter_
 
 - [`/app/api/keep-alive/route.ts`](app/api/keep-alive/route.ts) - API endpoint the cron job will execute
-- [`/config/keep-alive-config.ts`](app/api/keep-alive/route.ts) - Configuration for your setup
-- [`/vercel.json`](app/api/keep-alive/route.ts) - Directs Vercel to periodically run the `keep-alive` endpoint
+- [`/config/keep-alive-config.ts`](config/keep-alive-config.ts) - Configuration for your setup
+- [`/vercel.json`](vercel.json) - Directs Vercel to periodically run the `keep-alive` endpoint
 
 `utils/supabase` folder contains files provided in the Supabase docs for the [Next.js Web App demo — Supabase](https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs)
 
