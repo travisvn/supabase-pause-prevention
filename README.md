@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Supabase Pause Prevention
+
+The aim of this project is to prevent Supabase projects from pausing due to inactivity. 
+
+On the free-tier plan, projects that are inactive for more than 7 days are paused. 
+
+
+## How it works
+
+Creating a cron job that makes a simple database call and also calling similar `keep-alive.ts` endpoints for the other projects, as Vercel limits free-tier users to one cron job.
 
 ## Getting Started
 
-First, run the development server:
+The main files to pay attention to in this project:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [`/app/api/keep-alive/route.ts`](app/api/keep-alive/route.ts) - Contains all the logic
+- [`/config/keep-alive-config.ts`](app/api/keep-alive/route.ts) - Contains configurations easily modifiable for your situation
+- [`/vercel.json`](app/api/keep-alive/route.ts) - Directs Vercel to periodically run the `keep-alive` endpoint
+
+The rest of the settings are standard for a Next.js project initiated, and the `utils/supabase` folder contains files outlined in the Supabase docs for the [Next.js Web App demo — Supabase](https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs)
+
+___
+
+### Configuring your other Supabase projects
+
+Example of a setup using Prisma as an ORM
+
+`/pages/api/keep-alive.ts` 
+
+```typescript
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { prisma } from 'src/server/db'
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+export default async function handler(
+  _req: NextApiRequest,
+  res: NextApiResponse
+) {
+  try {
+    const dbResponse = await prisma.tag.findMany()
+    const successMessage = (dbResponse != null && dbResponse?.length > 0) ? "Success" : "Fail"
+    res.status(200).json(successMessage)
+  } catch (e) {
+    res.status(401).send("There was an error")
+  }
+}
+```
+___
+
+### Sample response
+
+Visiting `https://your-project-domain.vercel.app/api/keep-alive` 
+
+```
+Results for retrieving
+'mzmgylpviofc' from 'keep-alive' at column 'name': []
+
+Other Endpoint Results:
+https://your-other-vercel-project-urls.vercel.app/api/keep-alive - Passed
+https://your-other-supabase-app.com/api/keep-alive - Passed
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+___
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
