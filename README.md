@@ -1,6 +1,6 @@
 # Supabase Pause Prevention
 
-Stop Supabase projects from pausing due to inactivity! 🙂
+Stop Supabase projects from pausing due to inactivity! :raised_hands:
 
 > On the free-tier plan, projects that are inactive for more than 7 days are paused. 
 
@@ -28,6 +28,15 @@ Everything else is boilerplate from Next.js `create-next-app`
 ___
 
 ### Configuring your other Supabase projects
+
+After selecting your primary project (the one that implements the code provided in this repository), you'll want to add an API endpoint to your other Supabase projects
+
+The only requirement is that this endpoint is reachable and makes a call to your Supabase database
+
+> [!NOTE]
+> API endpoint must make database call
+> Ensure the server doesn't cache this
+
 
 <details>
 
