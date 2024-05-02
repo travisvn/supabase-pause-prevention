@@ -1,8 +1,8 @@
 # Supabase Pause Prevention
 
-The aim of this project is to prevent Supabase projects from pausing due to inactivity. 
+Stop Supabase projects from pausing due to inactivity! 🙂
 
-On the free-tier plan, projects that are inactive for more than 7 days are paused. 
+> On the free-tier plan, projects that are inactive for more than 7 days are paused. 
 
 
 ## How it works
@@ -13,15 +13,17 @@ On the free-tier plan, projects that are inactive for more than 7 days are pause
 
 ## Getting Started
 
-The main files to pay attention to in this project:
+**Super simple to add to your existing Supabase project!**
 
-- [`/app/api/keep-alive/route.ts`](app/api/keep-alive/route.ts) - Contains all the logic
-- [`/config/keep-alive-config.ts`](app/api/keep-alive/route.ts) - Contains configurations easily modifiable for your situation
+Only 3 files matter:
+
+- [`/app/api/keep-alive/route.ts`](app/api/keep-alive/route.ts) - API endpoint the cron job will execute
+- [`/config/keep-alive-config.ts`](app/api/keep-alive/route.ts) - Configuration for your setup
 - [`/vercel.json`](app/api/keep-alive/route.ts) - Directs Vercel to periodically run the `keep-alive` endpoint
 
 `utils/supabase` folder contains files provided in the Supabase docs for the [Next.js Web App demo — Supabase](https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs)
 
-The rest is boilerplate from Next.js `create-next-app`
+Everything else is boilerplate from Next.js `create-next-app`
 
 ___
 
@@ -52,6 +54,7 @@ export default async function handler(
 }
 ```
 </details>
+
 ___
 
 ### Sample response
