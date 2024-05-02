@@ -1,11 +1,11 @@
 # Supabase Pause Prevention
 
-Stop Supabase projects from pausing due to inactivity! :raised_hands:
+🛑 Stop Supabase projects from pausing due to inactivity! :raised_hands:
 
 > On the free-tier plan, projects that are inactive for more than 7 days are paused. 
 
 
-## How it works
+## Solution / How it works
 
 - Creating a _cron job_ (scheduled task) that makes a simple database call
   - _(This keeps your Supabase project active)_
@@ -15,7 +15,9 @@ Stop Supabase projects from pausing due to inactivity! :raised_hands:
 
 **Super simple to add to your existing Supabase project!**
 
-Only 3 files matter:
+### Configure your main project
+
+_Only 3 files matter_
 
 - [`/app/api/keep-alive/route.ts`](app/api/keep-alive/route.ts) - API endpoint the cron job will execute
 - [`/config/keep-alive-config.ts`](app/api/keep-alive/route.ts) - Configuration for your setup
@@ -25,16 +27,15 @@ Only 3 files matter:
 
 Everything else is boilerplate from Next.js `create-next-app`
 
-___
-
 ### Configuring your other Supabase projects
 
-After selecting your primary project (the one that implements the code provided in this repository), you'll want to add an API endpoint to your other Supabase projects
+After selecting your primary project _(the one that implements the code provided in this repository)_, you'll want to add an API endpoint to your other Supabase projects
 
 The only requirement is that this endpoint is reachable and makes a call to your Supabase database
 
+
 > [!NOTE]
-> API endpoint must make database call
+> API endpoint must make database call   
 > Ensure the server doesn't cache this
 
 
