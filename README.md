@@ -7,7 +7,9 @@ On the free-tier plan, projects that are inactive for more than 7 days are pause
 
 ## How it works
 
-Creating a cron job that makes a simple database call and also calling similar `keep-alive.ts` endpoints for the other projects, as Vercel limits free-tier users to one cron job.
+- Creating a _cron job_ (scheduled task) that makes a simple database call
+  - _(This keeps your Supabase project active)_
+- Fetching `keep-alive.ts` API endpoints for the other projects, as Vercel limits free-tier users to one cron job.
 
 ## Getting Started
 
@@ -17,13 +19,17 @@ The main files to pay attention to in this project:
 - [`/config/keep-alive-config.ts`](app/api/keep-alive/route.ts) - Contains configurations easily modifiable for your situation
 - [`/vercel.json`](app/api/keep-alive/route.ts) - Directs Vercel to periodically run the `keep-alive` endpoint
 
-The rest of the settings are standard for a Next.js project initiated, and the `utils/supabase` folder contains files outlined in the Supabase docs for the [Next.js Web App demo — Supabase](https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs)
+`utils/supabase` folder contains files provided in the Supabase docs for the [Next.js Web App demo — Supabase](https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs)
+
+The rest is boilerplate from Next.js `create-next-app`
 
 ___
 
 ### Configuring your other Supabase projects
 
-Example of a setup using Prisma as an ORM
+<details>
+
+<summary>Example of a setup using Prisma as an ORM</summary>
 
 `/pages/api/keep-alive.ts` 
 
@@ -45,6 +51,7 @@ export default async function handler(
   }
 }
 ```
+</details>
 ___
 
 ### Sample response
