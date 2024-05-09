@@ -86,7 +86,7 @@ VALUES
 ```
 
 > [!IMPORTANT]
-> It is now **strongly recommended** to use a `keep-alive` table like the one above
+> It is now **strongly recommended** to use a `keep-alive` table like the one above.   
 > This is in light of the added features for _optional_ database insertion & deletion actions
 
 ___
