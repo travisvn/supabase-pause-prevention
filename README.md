@@ -85,6 +85,10 @@ VALUES
   ('example');
 ```
 
+> [!IMPORTANT]
+> It is now **strongly recommended** to use a `keep-alive` table like the one above
+> This is in light of the added features for _optional_ database insertion & deletion actions
+
 ___
 
 ### Sample response
@@ -100,6 +104,18 @@ https://your-other-vercel-project-urls.vercel.app/api/keep-alive - Passed
 https://your-other-supabase-app.com/api/keep-alive - Passed
 
 ```
+
+<details>
+<summary>Extended response (with insertion / deletion)</summary>
+  
+```
+Results for retrieving entries from 'keep-alive' - 'name column: [{"name":"placeholder"},{"name":"random"}, ... ,{"name":"uujyzdnsbrgi"}]
+
+Results for deleting
+'uujyzdnsbrgi' from 'keep-alive' at column 'name': success
+```
+
+</details>
 
 ___
 
