@@ -2,25 +2,10 @@ import { createClient } from '@/utils/supabase/server'
 import { SupabaseClient } from '@supabase/supabase-js'
 
 import { keepAliveConfig as config } from '@/config/keep-alive-config'
-
-type QueryResponse = {
-  successful: boolean
-  message: string
-}
+import { QueryResponse, determineAction, generateRandomString } from './helper'
 
 export const dynamic = 'force-dynamic' // defaults to auto
 
-const alphabetOffset: number = 'a'.charCodeAt(0)
-
-const generateRandomString = (length: number) => {
-  let newString = ''
-
-  for (let i = 0; i < length; i++) {
-    newString += String.fromCharCode(alphabetOffset + Math.floor(Math.random() * 26))
-  }
-
-  return newString
-}
 
 const querySupabase = async (supabase: SupabaseClient, randomStringLength: number = 12): Promise<QueryResponse> => {
   const currentRandomString = generateRandomString(randomStringLength)
@@ -65,10 +50,23 @@ const fetchOtherEndpoints = async (): Promise<string[]> => {
 
 export async function GET() {
   const supabase = createClient()  // maybe switch to ClientSide Client
-  const querySupabaseResponse = await querySupabase(supabase)
 
-  const responseStatus: number = (querySupabaseResponse?.successful == true) ? 200 : 400
-  let responseMessage = querySupabaseResponse.message
+  let responseMessage: string = ''
+  let successfulResponses: boolean = true
+
+  if (config?.disableRandomStringQuery != true) {
+    const querySupabaseResponse: QueryResponse = await querySupabase(supabase)
+
+    successfulResponses = successfulResponses && querySupabaseResponse.successful
+    responseMessage += querySupabaseResponse.message + '\n\n'
+  }
+
+  if (config?.allowInsertionAndDeletion == true) {
+    const insertOrDeleteResults: QueryResponse = await determineAction(supabase)
+
+    successfulResponses = successfulResponses && insertOrDeleteResults.successful
+    responseMessage += insertOrDeleteResults.message + '\n\n'
+  }
 
   if (config?.otherEndpoints != null && config?.otherEndpoints.length > 0) {
     const fetchResults: string[] = await fetchOtherEndpoints()
@@ -76,6 +74,6 @@ export async function GET() {
   }
 
   return new Response(responseMessage, {
-    status: responseStatus
+    status: (successfulResponses == true) ? 200 : 400
   })
 }
