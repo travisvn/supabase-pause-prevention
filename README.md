@@ -20,6 +20,7 @@
 _Only 3 files matter_
 
 - [`/app/api/keep-alive/route.ts`](app/api/keep-alive/route.ts) - API endpoint the cron job will execute
+- [`/app/api/keep-alive/helper.ts`](app/api/keep-alive/helper.ts) - Helper functions called from `route.ts`
 - [`/config/keep-alive-config.ts`](config/keep-alive-config.ts) - Configuration for your setup
 - [`/vercel.json`](vercel.json) - Directs Vercel to periodically run the `keep-alive` endpoint
 
