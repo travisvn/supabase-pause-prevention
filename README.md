@@ -2,7 +2,10 @@
 
 🛑 Stop Supabase projects from pausing due to inactivity! :raised_hands:
 
-> On the free-tier plan, projects that are inactive for more than 7 days are paused. 
+> On the free-tier plan, projects that are inactive for more than 7 days are paused.
+
+
+# Please star ⭐️ if you find this useful 
 
 
 ## Solution / How it works
