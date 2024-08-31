@@ -51,22 +51,78 @@ The only requirement is that this endpoint is reachable and makes a call to your
 
 ```typescript
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { prisma } from 'src/server/db'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { prisma } from 'src/server/db'
+
+// See next example for contents of @/utils/helper
+import { generateRandomString } from '@/utils/helper'
 
 export default async function handler(
   _req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const dbResponse = await prisma.tag.findMany()
-    const successMessage = (dbResponse != null && dbResponse?.length > 0) ? "Success" : "Fail"
+    const randomString = generateRandomString()
+    const dbResponse = await prisma.keepAlive.findMany({
+      where: {
+        name: {
+          equals: randomString,
+        }
+      }
+    })
+    const successMessage = (dbResponse != null) ? `Success - found ${dbResponse.length} entries` : "Fail"
     res.status(200).json(successMessage)
   } catch (e) {
     res.status(401).send("There was an error")
   }
 }
 ```
+
+`/prisma/schema.prisma`
+
+```prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [uuidOssp(map: "uuid-ossp")]
+}
+
+model KeepAlive {
+  id     BigInt  @id @default(autoincrement())
+  name   String? @default("")
+  random String? @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+}
+```
+</details>
+
+<details>
+
+  <summary>Helper function for '/pages' directory (legacy support)</summary>
+
+  `/utils/helper.ts`
+
+  ```typescript
+  const defaultRandomStringLength: number = 12
+  
+  const alphabetOffset: number = 'a'.charCodeAt(0)
+  export const generateRandomString = (length: number = defaultRandomStringLength) => {
+    let newString = ''
+  
+    for (let i = 0; i < length; i++) {
+      newString += String.fromCharCode(alphabetOffset + Math.floor(Math.random() * 26))
+    }
+  
+    return newString
+  }
+  ```
 </details>
 
 ### Sample SQL 
