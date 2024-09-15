@@ -8,6 +8,11 @@
 # Please star ⭐️ if you find this useful 
 
 
+> [!TIP]
+> __NEW & IMPROVED VERSION__ written in Python available at [supabase-inactive-fix repo](https://github.com/travisvn/supabase-inactive-fix)
+
+
+
 ## Solution / How it works
 
 - Creating a _cron job_ (scheduled task) that makes a simple database call
