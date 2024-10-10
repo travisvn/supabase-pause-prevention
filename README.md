@@ -2,7 +2,6 @@
 
 ![GitHub stars](https://img.shields.io/github/stars/travisvn/supabase-pause-prevention?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/travisvn/supabase-pause-prevention?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/travisvn/supabase-pause-prevention?style=social)
 ![GitHub repo size](https://img.shields.io/github/repo-size/travisvn/supabase-pause-prevention)
 ![GitHub language count](https://img.shields.io/github/languages/count/travisvn/supabase-pause-prevention)
 ![GitHub top language](https://img.shields.io/github/languages/top/travisvn/supabase-pause-prevention)
