@@ -1,4 +1,14 @@
-# Supabase Pause Prevention
+# Supabase Pause Prevention ⏸️
+
+![GitHub stars](https://img.shields.io/github/stars/travisvn/supabase-pause-prevention?style=social)
+![GitHub forks](https://img.shields.io/github/forks/travisvn/supabase-pause-prevention?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/travisvn/supabase-pause-prevention?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/travisvn/supabase-pause-prevention)
+![GitHub language count](https://img.shields.io/github/languages/count/travisvn/supabase-pause-prevention)
+![GitHub top language](https://img.shields.io/github/languages/top/travisvn/supabase-pause-prevention)
+![GitHub last commit](https://img.shields.io/github/last-commit/travisvn/supabase-pause-prevention?color=red)
+![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ftravisvn%2Fsupabase-pause-prevention&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://img.shields.io/github/sponsors/travisvn)
 
 🛑 Stop Supabase projects from pausing due to inactivity! :raised_hands:
 
